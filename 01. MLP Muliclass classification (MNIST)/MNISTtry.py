@@ -52,6 +52,10 @@ class Network(nn.Module):
 model = Network()
 print(model)
 
+def save_checkpoint(state,filename="my_mnist_model.pth.tar"):
+
+    print("saving checkpoint")
+    torch.save(state,filename)
 # model = nn.Sequential(nn.Linear(input_size, 400),
 #                       nn.ReLU(),
 #                       nn.Linear(400,200),
@@ -72,6 +76,9 @@ for e in range(epochs):
     losses = list()
     accuracies = list()
     train_accuracy = 0
+
+    if epochs ==6:
+        torch.save(model.state_dict(),"model.pth")
 
     for i, (images, labels) in enumerate(iter(trainloader)):
 
